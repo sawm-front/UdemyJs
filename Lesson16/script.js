@@ -56,6 +56,6 @@ const calculator = (a, b) => a + b;
 
 // Классический вариант
 
-const calculator = (a, b) => {
+const calculate = (a, b) => {
    return a + b;
 };
