@@ -9,18 +9,41 @@ const options = {
    colors: {
       border: 'black',
       bg: 'red',
+   },
+   makeTest: function() {
+      console.log('Test');
    }
 };
 
 
 console.log(options.colors);
-
-
-delete options.name;
-
 console.log(options);
 
-// перебор 
+
+let counter = 0;
+
 for (let key in options) {
-   console.log(`Свойства ${key} имеет значаение ${options.;\;\\]]]key}`);
+
+   if (typeof(options[key]) === 'object') {
+      for (let i in options[key]) {
+         console.log(`Свойство ${i} имеет значение ${options[key][i]}`);
+         counter++;
+      }
+   } else {
+
+      console.log(`Свойство ${key} имеет значение ${options[key]}`);
+      counter++;
+   }
 }
+
+console.log(counter);
+
+options.makeTest();
+console.log(Object.keys(options).length);
+
+const {
+   border,
+   bg
+} = options.colors;
+
+console.log(border);
