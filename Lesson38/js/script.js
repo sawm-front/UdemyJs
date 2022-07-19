@@ -14,39 +14,57 @@
 
 'use strict';
 
-const movieDB = {
-   movies: [
-      "Логан",
-      "Лига справедливости",
-      "Ла-ла лэнд",
-      "Одержимость",
-      "Скотт Пилигрим против..."
-   ]
-};
 
-const adv = document.querySelectorAll('.promo__adv img');
+document.addEventListener('DOMContentLoaded', () => {
 
-adv.forEach(item => {
-   item.remove();
-});
+   const movieDB = {
+      movies: [
+         "Логан",
+         "Лига справедливости",
+         "Ла-ла лэнд",
+         "Одержимость",
+         "Скотт Пилигрим против..."
+      ]
+   };
 
-const poster = document.querySelector('.promo__bg');
-const genre = document.querySelector('.promo__genre');
-const movieList = document.querySelector('.promo__interactive-list');
+   const adv = document.querySelectorAll('.promo__adv img');
+   const genre = document.querySelector('.promo__genre');
+   const poster = document.querySelector('.promo__bg');
+   const movieList = document.querySelector('.promo__interactive-list');
+   const addForm = document.querySelector('form.add');
+   addInput = addForm.querySelector('.adding__input');
 
 
-genre.textContent = 'Драма';
-poster.style.backgroundImage = 'url("img/bg.jpg")';
+   document.querySelectorAll('.delete').forEach((btn, i) => {
+      btn.addEventListener('click', () => {
+         btn.parentElement.remove();
+         movieDB.movies.splice(i, 1);
+      })
+   });
 
-movieList.innerHTML = "";
-movieDB.movies.sort();
 
-console.log(movieDB.movies);
+   adv.forEach(function(item) {
+      item.remove();
+   });
 
-movieDB.movies.forEach((film, i) => {
-   movieList.innerHTML += `
-      <li class="promo__interactive-item">${i+1} ${film}
-         <div class="delete"></div>
-      </li>
+   genre.textContent = 'Драма';
+
+   poster.style.backgroundImage = 'url(img/bg.jpg)';
+
+   movieList.innerHTML = ""; // Очистили 
+
+   movieDB.movies.sort();
+
+   console.log(poster.innerHTML);
+
+
+   // Записали новую строку
+   movieDB.movies.forEach((film, i) => {
+      movieList.innerHTML += ` 
+
+   <li class="promo__interactive-item">${i + 1} ${film}
+      <div class="delete"></div>
+   </li>
    `;
+   });
 });
